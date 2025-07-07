@@ -27,4 +27,28 @@ class CreativeController extends Controller
 
         return redirect()->back()->with('success', 'Creative added!');
     }
+
+    public function update(Request $request, $id)
+    {
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'address' => 'required|string|max:255'
+        ]);
+
+        $creative = Creative::findOrFail($id);
+        $creative->update([
+            'name' => $request->name,
+            'address' => $request->address
+        ]);
+
+        return redirect()->back()->with('success', 'Creative updated!');
+    }
+
+    public function destroy($id)
+    {
+        $creative = Creative::findOrFail($id);
+        $creative->delete();
+
+        return redirect()->back()->with('success', 'Creative deleted!');
+    }
 }

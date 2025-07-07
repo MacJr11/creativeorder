@@ -18,3 +18,5 @@ use App\Http\Controllers\CreativeController;
 Route::get('/home', [HomeController::class, 'index']);
 Route::get('/', [CreativeController::class, 'index']);
 Route::post('/creatives', [CreativeController::class, 'store'])->name('creatives.store');
+Route::put('/creatives/{id}', [CreativeController::class, 'update'])->name('creatives.update');
+Route::delete('/creatives/{id}', [CreativeController::class, 'destroy'])->name('creatives.destroy');
